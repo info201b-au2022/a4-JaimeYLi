@@ -1,45 +1,72 @@
 ---
-title: "Your A4 Report Title (TODO: Revise title)"
-author: "Your Name"
-date: '2022-11-01'
+title: "Analysis of Jail Populations in the US"
+author: "Jaime Yang Li (jaimel3@uw.edu)"
+date: 'Autumn 2022'
 output: html_document
 ---
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
 
 ```{r echo=FALSE, eval=TRUE, message=FALSE}
-source("../source/a4-helpers.R")
 source("../source/analysis.R")
 ```
 
 ## Abstract 
-[TODO: Include a short abstract (about 50 words)]
-
-# Test (TODO: Remove before submission!!)
-```{r echo=FALSE}
-q1_string <- test_query1()
-num <- 5
-```
-As you know, this is a markdown report. The [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) is **useful!**
-
-* Here's a test of a dynamic variable. Say **"`r q1_string`!!!** 
-* Here's another test. A vector
-of numbers: `r test_query2(num)`.
-
-Recall that _{r echo=TRUE}_ can be used to display the code, 
-which is very useful when developing and debugging a report. Here's an example: 
-
-```{r echo=TRUE}
-num <- 5
-sum <- sum(test_query2(num))
-print(sum)
-```
+This project aims to expose patterns of injustice in the US justice system using data from the Vera Institute of Justice, a non-profit organization that works closely with the government and civil leaders to improve the justice system. 
 
 ## Introduction 
-[TODO]
+Vera's data collection tool _Incarceration Trends data tool_ was released in December of 2015 with the intent of challenging power regarding those incarcerated in America. The project aims to expose injustice in the justice system through accurate data collection and analysis. Vera challenges the usual method of data collection in the justice system by collecting data down to the county level, instead of the usual state or country level. While national data is important for a holistic view of the justice system, this detailed data allows us to identify and analyze regional biases. This individuals in this data are categorized by factors such as race, age, sex, and more. These values are available for most US counties. County data is categorized by features such as size, total population, region, and more. These divisions allow us to make detailed models of injustice in the justice system that state and national data could not. 
 
 ## Data Summary 
-[TODO]
+From the data set, one important feature we can observe is the racial demographic of incarcerated people. For example, the percentage of incarcerated people who were black in 2016 is `r black_percentage_2016`%. By comparing this number to the actual percentage of black people in the US in 2016 reveals that the percentage of incarcerated black people is significantly higher than the percentage population in the entire US. This reveals a systematic bias against black individuals. Further analysis of different racial groups may reveal further biases. 
 
-[TODO ... other sections ... See Canvas for details]
+Another data point I extracted from the data set is the average number of incarcerated people per county, which was `r avg_prisoners_2016` people per county (with sufficient data) in 2016. Using this value, we can detect regions with an "unusual" number of detainees and look further into why these regions have differing numbers. Some examples could be harsher state laws, harsher sentences, racial demographics, etc.
 
-_All the very best with your work!_
+This data is not cumulative, meaning that the difference between the number of incarcerated people a year can be negative or positive. By analyzing the periods of time with substantial increases or decreases, we can link possible events to these jumps. For example, the year with the highest increase of imprisonment is `r most_increase_year`. 
+
+### Graph 1: Bar Chart of Jail Population in the U.S. over time 
+``` {r echo=FALSE}
+plot_jail_pop_for_us()
+```
+
+_Figure 1: Bar chart showing the increase in the US jail population from 1970 to 2018_
+
+
+Graph 1 shows that the number of incarcerated people increased rapidly in the 1990's and has plateaued. This dramatic increase of incarcerated people may coincide with the War on Drugs or other historical events in the US. A boom in population could also be a contributor to this increase. This data is important for understanding the US justice system on a holistic view.
+
+### Graph 2: Line Plot of Jail Population Over Time in Four States 
+``` {r echo=FALSE}
+states <- c("WA", "CA", "AL", "NY")
+plot_jail_pop_by_states(states)
+```
+
+_Figure 2: Line graph showing the increase in jail populations from 1970 to 2018 for WA, CA, AL, and NY_
+
+Graph 2 shows the jail populations for California, Washington, Alabama, and New York. California has a consistently higher number of incarcerated people, as well as a higher increase in jail populations seen in the 1980s. This may be because of the War on Drug's disproportionate impact on states and regions with higher Black and Hispanic populations. California's high overall population and Black and Hispanic communities all contribute to its significantly higher prison population.
+
+### Graph 3: Scatter Plot of Black Population vs Black Jail Population 
+``` {r echo=FALSE}
+plot_black_jail_pop_perc()
+```
+
+_Figure 3: Scatter plot comparing percentage Black population to percentage Black incarceration. (red dashed line represents the expected, "unbiased" trend line, blue line is the actual trend line)_
+
+Graph 3 compared every county's Black percentage to its Black prison percentage. An unbiased imprisonment rate would should a linear trend line of a one-to-one increase (as depicted by the red line), however, the real trend line (blue) is jarringly steeper than the unbiased line. As calculated above, the 2016 percentage of Black inmates was also significantly higher than the percentage of Black people in the US (almost 4 times higher). This shows an extreme racial bias against African Americans in the US justice system. To expand on this, we should also analyze the same observations for the other racial groups.
+
+### Graph 4.1 and 4.2: Maps of Texas Incarceration Percentage and Totals (per county) 
+``` {r echo=FALSE}
+plot_texas_percentage()
+```
+
+_Figure 4.1: Map showing the percentage of incarcerated people in Texas counties (2018)_
+
+
+``` {r echo=FALSE}
+plot_texas_jail_pops()
+```
+
+_Figure 4.2: Map showing the total of incarcerated people in Texas counties (2018)_
+
+Texas's data was chosen because of the state's size and large population. The first map shows the percentage of citizens that are incarcerated and the second shows the number of incarcerated individuals. The purpose of the first map is to consider population size when it comes to incarceration numbers. By looking at the second map, we can see some counties with significantly higher imprisonment numbers, but that does not consider the fact that many counties have a much higher population density. There are some counties in the first map that have significantly higher incarceration rates. These rates should be looked into further and be compared to the county's demographics. 
 
