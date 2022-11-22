@@ -50,7 +50,7 @@ _Figure 2: Line graph showing the increase in jail populations from 1970 to 2018
 
 **How does state county level data look different from national data?**
 
-Graph 2 shows the jail populations for California, Washington, Alabama, and New York. California has a consistently higher number of incarcerated people, as well as a higher increase in jail populations seen in the 1980s. This may be because of the War on Drug's disproportionate impact on states and regions with higher Black and Hispanic populations. California's high overall population and Black and Hispanic communities all contribute to its significantly higher prison population.
+Graph 2 shows the jail populations for California, Washington, Alabama, and New York. These states were chosen for their differing population sizes and locations. California has a consistently higher number of incarcerated people, as well as a higher increase in jail populations seen in the 1980s. This may be because of the War on Drug's disproportionate impact on states and regions with higher Black and Hispanic populations. California's high overall population and Black and Hispanic communities all contribute to its significantly higher prison population.
 
 ### **Graph 3:** Scatter Plot of Black Population vs Black Jail Population 
 ``` {r echo=FALSE}
